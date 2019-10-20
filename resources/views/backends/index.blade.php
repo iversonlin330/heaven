@@ -64,10 +64,10 @@
 						<th scope="col">是否繳費</th>
 						<th scope="col">遊戲帳號</th>
 						<th scope="col">日期</th>
-						<th scope="col">時間</th>
 					</tr>
 				</thead>
 				<tbody id="record_table">
+				@foreach($orders as $order)
 					<tr>
 						<td>
 							<div class="form-check form-check-inline">
@@ -75,79 +75,15 @@
 								<label class="form-check-label" for=""></label>
 							</div>
 						</td>
-						<td>00001A</td>
-						<td>test</td>
-						<td>test</td>
-						<td>test</td>
-						<td>test</td>
-						<td>test</td>
-						<td>test</td>
-						<td>test</td>
+						<td>{{ $order->id }}</td>
+						<td>{{ $order->no }}</td>
+						<td>{{ $order->type }}</td>
+						<td>{{ $order->money }}</td>
+						<td>{{ ($order->is_pay == 1)? '是' : '否' }}</td>
+						<td>{{ $order->account }}</td>
+						<td>{{ $order->created_at }}</td>
 					</tr>
-					<tr>
-						<td>
-							<div class="form-check form-check-inline">
-								<input class="form-check-input" type="checkbox" id="inlineCheckbox1" value="option1">
-								<label class="form-check-label" for=""></label>
-							</div>
-						</td>
-						<td>00001A</td>
-						<td></td>
-						<td></td>
-						<td></td>
-						<td></td>
-						<td></td>
-						<td></td>
-						<td></td>
-					</tr>
-					<tr>
-						<td>
-							<div class="form-check form-check-inline">
-								<input class="form-check-input" type="checkbox" id="inlineCheckbox1" value="option1">
-								<label class="form-check-label" for=""></label>
-							</div>
-						</td>
-						<td>00001A</td>
-						<td></td>
-						<td></td>
-						<td></td>
-						<td></td>
-						<td></td>
-						<td></td>
-						<td></td>
-					</tr>
-					<tr>
-						<td>
-							<div class="form-check form-check-inline">
-								<input class="form-check-input" type="checkbox" id="inlineCheckbox1" value="option1">
-								<label class="form-check-label" for=""></label>
-							</div>
-						</td>
-						<td>00001A</td>
-						<td></td>
-						<td></td>
-						<td></td>
-						<td></td>
-						<td></td>
-						<td></td>
-						<td></td>
-					</tr>
-					<tr>
-						<td>
-							<div class="form-check form-check-inline">
-								<input class="form-check-input" type="checkbox" id="inlineCheckbox1" value="option1">
-								<label class="form-check-label" for=""></label>
-							</div>
-						</td>
-						<td>00002A</td>
-						<td></td>
-						<td></td>
-						<td></td>
-						<td></td>
-						<td></td>
-						<td></td>
-						<td></td>
-					</tr>
+				@endforeach
 				</tbody>
 			</table>
 		</div>

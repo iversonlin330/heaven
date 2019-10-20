@@ -8,23 +8,99 @@ use App\Config;
 use App\User;
 use App\Order;
 
-class BackendController extends Controller
+class FrontendController extends Controller
 {
     //
 	public function index(){
-		$orders = Order::all();
-		return view('backends.index',compact('orders'));
+		$config = Config::find(1);
+		$ratios = Ratio::all()->sortBy('start');
+		//dd($config->limit);
+		return view('frontends.index',compact('config','ratios'));
 	}
 	
 	public function postindex(Request $request){
-		return view('backends.index');
+		$data = $request->all();
+		//dd($request->all());
+		$MerchantTradeNo = "heaven".time() ;
+		Order::create([
+			"no" => $MerchantTradeNo,
+			"type" => $data['type'],
+			"account" => $data['account'],
+			"money" => $data['value'],
+			"is_pay" => 0
+		]);
+		dd('123');
+		include('ECPay.Payment.Integration.php');
+		try {
+			//$url = "https://shoplong.wynn-paradise.com/";
+			//$url = "http://localhost:6002/heaven/";
+			$obj = new \ECPay_AllInOne();
+	   
+			//服務參數
+			$obj->ServiceURL  = "https://payment-stage.ecpay.com.tw/Cashier/AioCheckOut/V5";  //服務位置
+			$obj->HashKey     = '5294y06JbISpM5x9' ;                                          //測試用Hashkey，請自行帶入ECPay提供的HashKey
+			$obj->HashIV      = 'v77hoKGq4kWxNNIS' ;                                          //測試用HashIV，請自行帶入ECPay提供的HashIV
+			$obj->MerchantID  = '2000132';                                                    //測試用MerchantID，請自行帶入ECPay提供的MerchantID
+			$obj->EncryptType = '1';                                                          //CheckMacValue加密類型，請固定填入1，使用SHA256加密
+			//基本參數(請依系統規劃自行調整)
+			//$MerchantTradeNo = "heaven".time() ;
+			$obj->Send['ReturnURL']         = "http://www.ecpay.com.tw/receive.php" ;     //付款完成通知回傳的網址
+			$obj->Send['MerchantTradeNo']   = $MerchantTradeNo;                           //訂單編號
+			$obj->Send['MerchantTradeDate'] = date('Y/m/d H:i:s');                        //交易時間
+			$obj->Send['TotalAmount']       = $data['value'];                                       //交易金額
+			$obj->Send['TradeDesc']         = "good to drink" ;                           //交易描述
+			if($data['type'] == 'CVS'){
+				$obj->Send['ChoosePayment']     = \ECPay_PaymentMethod::CVS;
+			}elseif($data['type'] == 'ATM'){
+				$obj->Send['ChoosePayment']     = \ECPay_PaymentMethod::ATM;
+			}elseif($data['type'] == 'Credit'){
+				$obj->Send['ChoosePayment']     = \ECPay_PaymentMethod::Credit;
+			}
+			//$obj->Send['ClientBackURL'] = $url."UC1-PF2_front_index.html";
+			//$obj->Send['ClientRedirectURL'] = $url."result2.php";
+			//$obj->Send['PaymentInfoURL'] = $url."result2.php";
+			$obj->Send['OrderResultURL'] = url('fontend/result');
+			$obj->Send['CustomField1'] = $data['money'];
+			$obj->Send['CustomField2'] = $data['account'];
+			//訂單的商品資料
+			array_push($obj->Send['Items'], array('Name' => "天堂幣", 'Price' => (int)$data['value'],
+					   'Currency' => "元", 'Quantity' => (int) "1", 'URL' => "dedwed"));
+			# 電子發票參數
+			/*
+			$obj->Send['InvoiceMark'] = ECPay_InvoiceState::Yes;
+			$obj->SendExtend['RelateNumber'] = "Test".time();
+			$obj->SendExtend['CustomerEmail'] = 'test@ecpay.com.tw';
+			$obj->SendExtend['CustomerPhone'] = '0911222333';
+			$obj->SendExtend['TaxType'] = ECPay_TaxType::Dutiable;
+			$obj->SendExtend['CustomerAddr'] = '台北市南港區三重路19-2號5樓D棟';
+			$obj->SendExtend['InvoiceItems'] = array();
+			// 將商品加入電子發票商品列表陣列
+			foreach ($obj->Send['Items'] as $info)
+			{
+				array_push($obj->SendExtend['InvoiceItems'],array('Name' => $info['Name'],'Count' =>
+					$info['Quantity'],'Word' => '個','Price' => $info['Price'],'TaxType' => ECPay_TaxType::Dutiable));
+			}
+			$obj->SendExtend['InvoiceRemark'] = '測試發票備註';
+			$obj->SendExtend['DelayDay'] = '0';
+			$obj->SendExtend['InvType'] = ECPay_InvType::General;
+			*/
+			//產生訂單(auto submit至ECPay)
+			$obj->CheckOut();
+		  
+		
+		} catch (Exception $e) {
+			echo $e->getMessage();
+		}
+		//dd($request->all());
+		//return view('backends.index');
 	}
 	
-	public function getRatio()
+	public function postResult(Request $request)
     {
         //
-		$ratios = Ratio::orderBy('start')->get();
-		return view('backends.ratio',compact('ratios'));
+		//dd($request->all());
+		
+		return view('backends.result');
     }
 	
 	public function postRatio(Request $request)

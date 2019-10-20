@@ -21,7 +21,7 @@ Route::get('/login', function () {
 	}else{
 		return view('login');
 	}
-});
+})->name('login');
 
 Route::post('/login', 'Auth\LoginController@postLogin');
 Route::group(['middleware' => ['auth']], function () {
@@ -45,4 +45,12 @@ Route::group(['middleware' => ['auth']], function () {
 		Route::post('item','BackendController@postItem');
 	});
 });
+
+Route::group(['prefix' => 'frontend'], function () {
+	Route::get('index','FrontendController@index');
+	Route::post('index','FrontendController@postindex');
+	Route::post('result','FrontendController@postResult');
+});
+
+
 //Route::resource('ratios', 'RatioController');
