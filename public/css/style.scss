@@ -1,0 +1,18 @@
+$maincolor:#d7ac41;
+$fontcolor:#6c6c6c;
+$sectionTitle:50px;
+
+
+@mixin Title{
+    font-size:50px;
+    font-weight: 600;
+    color:#4a494b;
+}
+
+.title{
+    @include Title;
+}
+
+.btn{
+    background-color: $maincolor;
+}

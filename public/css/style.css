@@ -1,0 +1,446 @@
+/* * {
+  border: red solid 1px;
+} */
+
+body {
+  font-family: '微軟正黑體'!important;
+  width: 100%;
+  height: 100vh;
+  background-color: #7E8EAD!important;
+  margin: 0;
+  padding: 0;
+  /* display: flex;
+  justify-content: center;
+  align-items: center; */
+}
+
+p, a, label, input, button {
+  font-size: 15px;
+  color: #3c3c3c;
+  letter-spacing: 1px;
+  text-decoration: none!important;
+  line-height: 1.5;
+}
+
+p {
+  margin-bottom: 0;
+}
+
+label {
+  text-align: right;
+}
+
+.container {
+  max-width: none !important;
+  width: 1200px!important;
+}
+
+.container {
+  max-width: none !important;
+  width: 1160px!important;
+}
+
+.flex_center {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+/* 藍色 #7E8EAD */
+
+/* 通用 */
+
+.bg-lihgt {
+  background-color: #F7F8FC!important;
+  padding: 10px 50px!important;
+}
+
+.bg-lihgt img {
+  height: 40px;
+}
+
+.btn_back_homepage {
+  background-color: #7E8EAD;
+  padding: 5px 8px;
+  border-radius: 5px;
+  display: flex;
+  justify-content: center;
+  color: #fff;
+  font-size: 12px;
+  float: right;
+}
+
+.btn_back_homepage a:hover {
+  color: #DEDFDF;
+}
+
+.front_title {
+  color: #242424!important;
+  background-color: #F7F8FC;
+  opacity: 0.7;
+  font-size: 16px;
+  margin: auto;
+  text-align: center;
+  padding: 7px;
+  width: 800px;
+  border-radius: 10px 10px 0 0;
+  font-weight: bold;
+}
+
+.box_style_gray {
+  background-color: #242424;
+  opacity: 0.6;
+  padding: 25px 40px;
+  border-radius: 0 0 5px 5px;
+  width: 800px;
+  margin: 0 auto 20px auto;
+}
+
+.box_style_gray p, .box_style_gray label {
+  color: #fff;
+  font-size: 15px;
+}
+
+.dashed_line_lightgray {
+  margin: 15px auto;
+  width: 80%;
+  border-top: 1px solid rgba(235, 235, 235, 0.4);
+  width: 100%;
+  border-style: dashed;
+}
+
+.btn_pink {
+  background-color: #E5A590!important;
+  font-size: 14px!important;
+  border-radius: 0.25rem!important;
+  padding: 0.25rem 0.75rem!important;
+}
+
+.btn_pink:hover {
+  background-color: #D1A590!important;
+}
+
+.btn_dark {
+  background-color: #3b4A68!important;
+  color: #fff!important;
+  font-size: 14px!important;
+  border-radius: 0.25rem!important;
+  padding: 0.25rem 0.75rem!important;
+}
+
+.btn_dark:hover {
+  background-color: rgb(77, 92, 124)!important;
+}
+
+.btn_blue {
+  background-color: #CED1D6!important;
+  font-size: 14px!important;
+  border-radius: 0.25rem!important;
+  padding: 0.25rem 0.75rem!important;
+}
+
+.btn_blue:hover {
+  background-color: #BABCBF!important;
+}
+
+/* 排版 */
+
+.mb-30 {
+  margin-bottom: 30px;
+}
+
+.mb-40 {
+  margin-bottom: 40px;
+}
+
+.mb-0 {
+  margin-bottom: 0;
+}
+
+.form-group {
+  margin-bottom: 0;
+}
+
+/* 前台首頁(UC1) */
+
+.sponsor_left, .sponsor_right {
+  padding: 0 40px;
+}
+
+.sponsor_left {
+  border-right: solid 1px #fff;
+}
+
+.sponsor_left p, .sponsor_right p {
+  color: #fffff;
+  opacity: 1;
+  font-size: 16px;
+  font-weight: 500;
+}
+
+.section_game_related label, .section_payment_info label {
+  margin-bottom: 5px;
+  text-align: right;
+  font-size: 15px;
+}
+
+.section_game_related .form-control {
+  height: 30px;
+}
+
+.black_text {
+  color: #3c3c3c;
+  font-weight: bold;
+}
+
+/* 繳費方式(UC4) */
+
+.section_payment_flow_firm img {
+  height: 100px;
+}
+
+.payment_choose {
+  background-color: #000;
+  padding: 12px;
+  margin-bottom: 10px;
+}
+
+.payment_choose label {
+  font-size: 15px;
+}
+
+.payment_firm_icon img {
+  margin-right: 10px;
+  opacity: 1;
+}
+
+.hint{
+  color:rgb(43, 189, 246);
+  font-size: 14px;
+  margin-left: 15px;
+  opacity: 0.8;
+}
+/* 繳費資訊(UC5) */
+
+.game_related {
+  width: 80%;
+  margin: 10px auto 30px auto;
+}
+
+.game_related p {
+  margin-bottom: 5px;
+}
+
+.payment_info {
+  background-color: #000;
+  padding: 30px 40px;
+  border-radius: 5px;
+  margin: 0 auto 10px auto;
+  width: 80%;
+}
+
+.payment_info p {
+  margin-bottom: 5px;
+}
+
+/* footer */
+
+.footer {
+  padding: 30px 40px 40px 100px;
+  width: 1200px;
+}
+
+.footer p {
+  margin-bottom: 0;
+  color: #DEDFDF;
+  font-size: 12px;
+}
+
+.admin_mail, .qq_account, .skype_account, .dc_account, .line_account, .wechat_account, .official_website_link, .official_website {
+  float: left;
+}
+
+.admin_mail, .qq_account, .skype_account, .dc_account, .line_account, .wechat_account, .official_website_link, .official_website {
+  margin-right: 130px;
+  border-bottom: 1px solid #DEDFDF;
+  padding: 12px 0;
+  width: 220px;
+  opacity: 0.8;
+}
+
+/* 後台sidenav */
+
+.sidenav {
+  height: 100%;
+  width: 240px;
+  position: fixed;
+  z-index: 1;
+  top: 0;
+  left: 0;
+  background-color: #3B4A68;
+  overflow-x: hidden;
+  padding: 40px 30px;
+}
+
+.sidenav a {
+  text-decoration: none;
+  font-size: 15px;
+  color: #fff;
+  display: block;
+  padding: 10px 0;
+}
+
+.sidenav a:hover, .dropdown-btn:hover {
+  color: #E5A590;
+}
+
+.line_white {
+  margin: 0 0 10px 0;
+  border-top: 1px solid rgba(235, 235, 235, 0.8);
+  width: 100%;
+}
+
+.dropdown-btn {
+  background-color: transparent;
+  color: #fff;
+  border: none;
+  padding: 10px 0;
+  font-size: 15px;
+}
+
+.active {
+  color: #BAC0C3;
+}
+
+.dropdown-container {
+  display: none;
+}
+
+.dropdown-container a {
+  color: #BAC0C3;
+  font-size: 14px;
+  padding: 5px;
+}
+
+.fa-caret-down {
+  padding-right: 8px;
+}
+
+.sidenav_head p {
+  color: #fff;
+  text-align: center;
+  font-size: 16px;
+}
+
+.main {
+  margin-left: 240px;
+}
+
+.main p {
+  margin-bottom: 0;
+}
+
+.back_end_nav {
+  padding: 0px!important;
+}
+
+.back_end_nav p, .back_end_nav a {
+  font-size: 12px;
+  margin-bottom: 0;
+}
+
+.back_title {
+  color: #fff;
+  opacity: 0.8;
+  font-size: 19px;
+  margin: auto;
+  text-align: center;
+  font-weight: 500;
+  letter-spacing: 2px;
+  margin-bottom: 30px!important;
+}
+
+/* 贊助儲值紀錄 */
+
+.record_box {
+  background-color: #fff;
+  padding: 25px 0px;
+  border-radius: 5px;
+  box-shadow: 0px 4px 7px 1px rgba(0, 0, 0, 0.2);
+}
+
+.record_box p {
+  font-weight: 500;
+  font-size: 16px;
+}
+
+.record_box_icon {
+  font-size: 32px;
+  color: #BAC0C3;
+  margin-left: 20px;
+}
+
+.record_box_date {
+  font-size: 14px!important;
+  font-weight: normal!important;
+}
+
+.search_bar {
+  float: right;
+  margin-right: 15px;
+  width: 160px!important;
+  background-color: #BFC7D6!important;
+  border-radius: 10px!important;
+  font-size: 14px!important;
+}
+
+.section_deposit_record_table th, .section_deposit_record_table td, .section_data_rate_setting th, .section_data_rate_setting td, .section_item_distribution th, .section_item_distribution td {
+  color: #3B4A68;
+  font-size: 15px;
+}
+
+.table_head {
+  background-color: #BFC7D6;
+  border-radius: 5px 5px 0 0!important;
+  height: 40px;
+}
+
+.table-striped>tbody>tr:nth-child(odd)>td, .table-striped>tbody>tr:nth-child(odd)>th {
+  background-color: #DFE5EB;
+}
+
+.table-striped>tbody>tr:nth-child(even)>td, .table-striped>tbody>tr:nth-child(even)>th {
+  background-color: #F7F8F8;
+}
+
+/* 伺服器設定 */
+
+.form_style {
+  width: 850px;
+}
+
+.form_style label {
+  font-size: 15px;
+  color: #3C3C3C;
+  font-weight: bold;
+}
+
+.form_style input {
+  background-color: #F7F8F8;
+}
+
+.form_style .row {
+  display: flex;
+}
+
+/* 金流商家設定 */
+
+.section_pay_firm .form-group {
+  margin-bottom: 10px!important;
+}
+
+/* 前台首頁設定 */
+
+.section_front_setting .form-control {
+  height: 32px;
+}
