@@ -29,7 +29,6 @@ class FrontendController extends Controller
 			"money" => $data['value'],
 			"is_pay" => 0
 		]);
-		dd('123');
 		include('ECPay.Payment.Integration.php');
 		try {
 			//$url = "https://shoplong.wynn-paradise.com/";
@@ -51,15 +50,17 @@ class FrontendController extends Controller
 			$obj->Send['TradeDesc']         = "good to drink" ;                           //交易描述
 			if($data['type'] == 'CVS'){
 				$obj->Send['ChoosePayment']     = \ECPay_PaymentMethod::CVS;
+				$obj->Send['ClientRedirectURL'] = url('frontend/cvs');
 			}elseif($data['type'] == 'ATM'){
 				$obj->Send['ChoosePayment']     = \ECPay_PaymentMethod::ATM;
+				$obj->Send['ClientRedirectURL'] = url('frontend/cvs');
 			}elseif($data['type'] == 'Credit'){
 				$obj->Send['ChoosePayment']     = \ECPay_PaymentMethod::Credit;
+				$obj->Send['OrderResultURL'] = url('frontend/result');
 			}
 			//$obj->Send['ClientBackURL'] = $url."UC1-PF2_front_index.html";
 			//$obj->Send['ClientRedirectURL'] = $url."result2.php";
 			//$obj->Send['PaymentInfoURL'] = $url."result2.php";
-			$obj->Send['OrderResultURL'] = url('fontend/result');
 			$obj->Send['CustomField1'] = $data['money'];
 			$obj->Send['CustomField2'] = $data['account'];
 			//訂單的商品資料
@@ -95,12 +96,35 @@ class FrontendController extends Controller
 		//return view('backends.index');
 	}
 	
-	public function postResult(Request $request)
+	public function getResult(Request $request)
     {
         //
 		//dd($request->all());
 		
-		return view('backends.result');
+		return view('frontends.result');
+    }
+	
+	public function postResult(Request $request)
+    {
+        //
+		//dd($request->all());
+		$data = $request->all();
+		if($data['RtnCode'] == 1){
+			Order::where('no',$data['MerchantTradeNo'])->update(['is_pay' => 1]);
+		}
+		return view('frontends.result',compact('data'));
+    }
+	
+	public function postCVS(Request $request)
+    {
+        //
+		//dd($request->all());
+		$data = $request->all();
+		dd($data);
+		if($data['RtnCode'] == 1){
+			Order::where('no',$data['MerchantTradeNo'])->update(['is_pay' => 1]);
+		}
+		return view('frontends.result',compact('data'));
     }
 	
 	public function postRatio(Request $request)

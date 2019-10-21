@@ -204,6 +204,8 @@
 	var ratio = {!! json_encode($ratios->toArray()) !!}
 	$("#sponsorMoney").change(function(){
 		var money = parseInt($(this).val());
+		$("#sponsorCurrency").text(money);
+		$("#Currency").val(money);
 		for(x in ratio){
 			var start = parseInt(ratio[x]['start']);
 			var end = parseInt(ratio[x]['end']);
