@@ -181,26 +181,64 @@ class BackendController extends Controller
 		return back();
     }
 	
-	public function getItem()
+	public function getItem(Request $request)
     {
         //
-		$users = User::where('role',50)->get();
+		$data = $request->all();
+		$server = Config::find(1)->server;
+		$database = '';
+		$databases = [];
+		$table= '';
+		$tables = [];
+		$column= '';
+		$columns = [];
+		if(array_key_exists('database',$data)){
+			$database = $data['database'];
+		}
 		
-		return view('backends.item',compact('users'));
+		config(['database.connections.game' => [
+			'driver' => 'mysql',
+			'host' => $server['ip'],
+			'database' => $database,
+			'username' => $server['account'],
+			'password' => $server['password'],
+			'port' => $server['port'],
+		]]);
+		$databases = \DB::connection('game')->select('show databases;');
+		$databases = array_map('current',$databases);
+		
+		if(array_key_exists('database',$data)){
+			$tables = \DB::connection('game')->select('show tables;');
+			$tables = array_map('current',$tables);
+			//dd($tables);
+		}
+		
+		if(array_key_exists('table',$data)){
+			if($data['table']){
+				$table = $data['table'];
+				$columns = \DB::connection('game')->select("SHOW FULL COLUMNS FROM ". $table);
+				$columns = array_map('current',$columns);
+				//dd($columns);
+			}
+		}
+		
+		return view('backends.item',compact('users','database','databases','table','tables','column','columns'));
     }
 	
 	public function postItem(Request $request)
     {
 		$data = $request->all();
-		User::where('role',50)->delete();
-		foreach($data['account'] as $index=>$val){ 
-			User::create([
-				'account' => $data['account'][$index],
-				'password' => $data['password'][$index],
-				'expired_date' => $data['expired_date'][$index],
-				'role' => 50,
-			]);
-		}
+		$server = Config::find(1)->server;
+		config(['database.connections.game' => [
+			'driver' => 'mysql',
+			'host' => $server['ip'],
+			'database' => $data['_database'],
+			'username' => $server['account'],
+			'password' => $server['password'],
+			'port' => $server['port'],
+		]]);
+		\DB::connection('game')->select("ALTER TABLE ".$data['_table']." ALTER COLUMN ".$data['column']." SET DEFAULT ".$data['default_val'].";");
+		
 		return back();
     }
 	
