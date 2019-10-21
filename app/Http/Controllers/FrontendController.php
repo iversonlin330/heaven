@@ -115,9 +115,10 @@ class FrontendController extends Controller
 		return view('frontends.result',compact('data'));
     }
 	
-	public function postCVS(Request $request)
+	public function postCvs(Request $request)
     {
-        //
+        file_put_contents( ‘/tmp/ECPay_’.uniqid(”, true) .’.txt’, print_r( $_POST, true ) );
+		//
 		//dd($request->all());
 		$data = $request->all();
 		dd($data);
