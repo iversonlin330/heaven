@@ -117,7 +117,7 @@ class FrontendController extends Controller
 	
 	public function postCvs(Request $request)
     {
-        file_put_contents( ‘/tmp/ECPay_’.uniqid(”, true) .’.txt’, print_r( $_POST, true ) );
+        //file_put_contents( ‘/tmp/ECPay_’.uniqid(”, true) .’.txt’, print_r( $_POST, true ) );
 		//
 		//dd($request->all());
 		$data = $request->all();
