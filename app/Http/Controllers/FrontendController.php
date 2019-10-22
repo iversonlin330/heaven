@@ -63,9 +63,11 @@ class FrontendController extends Controller
 			$obj->Send['TradeDesc']         = "good to drink" ;                           //交易描述
 			if($data['type'] == 'CVS'){
 				$obj->Send['ChoosePayment']     = \ECPay_PaymentMethod::CVS;
+				$obj->Send['PaymentInfoURL'] = url('frontend/cvs');
 				$obj->Send['ClientRedirectURL'] = url('frontend/cvs');
 			}elseif($data['type'] == 'ATM'){
 				$obj->Send['ChoosePayment']     = \ECPay_PaymentMethod::ATM;
+				$obj->Send['PaymentInfoURL'] = url('frontend/cvs');
 				$obj->Send['ClientRedirectURL'] = url('frontend/cvs');
 			}elseif($data['type'] == 'Credit'){
 				$obj->Send['ChoosePayment']     = \ECPay_PaymentMethod::Credit;
