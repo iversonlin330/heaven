@@ -63,12 +63,16 @@ class FrontendController extends Controller
 			$obj->Send['TradeDesc']         = "good to drink" ;                           //交易描述
 			if($data['type'] == 'CVS'){
 				$obj->Send['ChoosePayment']     = \ECPay_PaymentMethod::CVS;
-				$obj->Send['PaymentInfoURL'] = url('frontend/cvs');
-				$obj->Send['ClientRedirectURL'] = url('frontend/cvs');
+				//$obj->Send['PaymentInfoURL'] = url('frontend/cvs');
+				//$obj->Send['ClientRedirectURL'] = url('frontend/cvs');
+				$obj->Send['PaymentInfoURL'] = url('sample');
+				$obj->Send['ClientRedirectURL'] = url('sample');
 			}elseif($data['type'] == 'ATM'){
 				$obj->Send['ChoosePayment']     = \ECPay_PaymentMethod::ATM;
-				$obj->Send['PaymentInfoURL'] = url('frontend/cvs');
-				$obj->Send['ClientRedirectURL'] = url('frontend/cvs');
+				//$obj->Send['PaymentInfoURL'] = url('frontend/cvs');
+				//$obj->Send['ClientRedirectURL'] = url('frontend/cvs');
+				$obj->Send['PaymentInfoURL'] = url('sample');
+				$obj->Send['ClientRedirectURL'] = url('sample');
 			}elseif($data['type'] == 'Credit'){
 				$obj->Send['ChoosePayment']     = \ECPay_PaymentMethod::Credit;
 				$obj->Send['OrderResultURL'] = url('frontend/result');
@@ -141,6 +145,47 @@ class FrontendController extends Controller
 			Order::where('no',$data['MerchantTradeNo'])->update(['is_pay' => 1]);
 		}
 		return view('frontends.result',compact('data'));
+    }
+	
+	public function getSample(Request $request)
+    {
+        //
+		//dd($request->all());
+		
+		return view('frontends.sample');
+    }
+	
+	public function postSample(Request $request)
+    {
+        //
+		//dd($request->all());
+		define( 'ECPay_HashKey', '5294y06JbISpM5x9' );
+		define( 'ECPay_HashIV', 'v77hoKGq4kWxNNIS' );
+		$data = $request->all();
+		$arParameters = $request->all();
+		foreach ($arParameters as $keys => $value) {
+			if ($keys != 'CheckMacValue') {
+				if ($keys == 'PaymentType') {
+					$value = str_replace('_CVS', '', $value);
+					$value = str_replace('_BARCODE', '', $value);
+					$value = str_replace('_CreditCard', '', $value);
+				}
+				if ($keys == 'PeriodType') {
+					$value = str_replace('Y', 'Year', $value);
+					$value = str_replace('M', 'Month', $value);
+					$value = str_replace('D', 'Day', $value);
+				}
+				$arFeedback[$keys] = $value;
+			}
+		}
+		include('ECPay.Payment.Integration.php');
+		$CheckMacValue = \ECPay_CheckMacValue::generate( $arParameters, ECPay_HashKey, ECPay_HashIV );
+		//dd($data,$CheckMacValue);
+		if($data['RtnCode'] == 1 && && $CheckMacValue == $_POST['CheckMacValue']){
+			Order::where('no',$data['MerchantTradeNo'])->update(['is_pay' => 1]);
+		}
+		echo '1|OK';
+		//return view('frontends.result',compact('data'));
     }
 	
 	public function postRatio(Request $request)
