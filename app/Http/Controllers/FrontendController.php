@@ -181,7 +181,7 @@ class FrontendController extends Controller
 		include('ECPay.Payment.Integration.php');
 		$CheckMacValue = \ECPay_CheckMacValue::generate( $arParameters, ECPay_HashKey, ECPay_HashIV );
 		//dd($data,$CheckMacValue);
-		if($data['RtnCode'] == 1 && && $CheckMacValue == $_POST['CheckMacValue']){
+		if($data['RtnCode'] == 1 && $CheckMacValue == $_POST['CheckMacValue']){
 			Order::where('no',$data['MerchantTradeNo'])->update(['is_pay' => 1]);
 		}
 		echo '1|OK';
