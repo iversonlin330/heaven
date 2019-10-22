@@ -41,8 +41,8 @@
 			</form>
 			<hr class="line_white">
 			<form action="{{ url('backend/item') }}" method="POST">
-			<input name="_database" value="{{ $database }}">
-			<input name="_table" value="{{ $table }}">
+			<input name="_database" value="{{ $database }}" hidden>
+			<input name="_table" value="{{ $table }}" hidden>
 			<div class="form_style mb-40 mt-5 mx-auto" >
 				<div class="form-group row d-flex justify-content-center">
 					<label for="data_field" class="col-form-label">欄位：</label>
@@ -73,8 +73,12 @@
 @section('script')
 @parent
 <script>
+$('[name="database"]').change(function(){
+	$('[name="table"]').val('');
+	$('#database_form').submit();
+});
 $('[name="database"],[name="table"]').change(function(){
 	$('#database_form').submit();
-})
+});
 </script>
 @endsection

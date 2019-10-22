@@ -20,7 +20,20 @@ class FrontendController extends Controller
 	
 	public function postindex(Request $request){
 		$data = $request->all();
-		//dd($request->all());
+		/*
+		dd($request->all());
+		$server = Config::find(1)->server;
+		config(['database.connections.game' => [
+			'driver' => 'mysql',
+			'host' => $server['ip'],
+			'database' => 'testbata',
+			'username' => $server['account'],
+			'password' => $server['password'],
+			'port' => $server['port'],
+		]]);
+		\DB::connection('game')->select('');
+		*/
+		
 		$MerchantTradeNo = "heaven".time() ;
 		Order::create([
 			"no" => $MerchantTradeNo,

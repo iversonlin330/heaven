@@ -222,7 +222,7 @@ class BackendController extends Controller
 			}
 		}
 		
-		return view('backends.item',compact('users','database','databases','table','tables','column','columns'));
+		return view('backends.item',compact('database','databases','table','tables','column','columns'));
     }
 	
 	public function postItem(Request $request)

@@ -47,7 +47,7 @@
                 <p class="front_title">代收金流廠商</p>
                 <div class="box_style_gray" style="opacity: 1; background-color: rgba(36, 36, 36, 0.6)">
                     <div class="payment_firm_icon text-center">
-                        <img src="/img/711ibon.png" alt="">
+                        <!--img src="/img/711ibon.png" alt=""-->
                         <img src="/img/convenience_store.png" alt="">
                         <img src="/img/atm.png" alt="">
                         <img src="/img/creditcard.png" alt="">
@@ -65,25 +65,30 @@
                 <div class="box_style_gray">
                     <div class="form-group">
                         <div><label for="section_payment_type" style="font-size: 14px;">*贊助前請至官網詳贊助說明</label></div>
-                        <div class="payment_choose">
+                        @if($config->casher['cvs'] == 1)
+						<div class="payment_choose">
                             <div class="form-check">
                                 <input class="form-check-input" type="radio" name="type" id="Radio1" value="CVS">
                                 <label class="form-check-label" for="Radio1">超商代碼<em class="hint">*單次最高贊助金額為 NT$ <span>{{ $config->limit['cvs2'] }}</span></em></label>
                             </div>
                         </div>
+						@endif
+						@if($config->casher['atm'] == 1)
                         <div class="payment_choose">
                             <div class="form-check">
                                 <input class="form-check-input" type="radio" name="type" id="Radio2" value="ATM">
                                 <label class="form-check-label" for="Radio3">ATM轉帳<em class="hint">*單次最高贊助金額為 NT$ <span>{{ $config->limit['atm2'] }}</span></em></label>
                             </div>
                         </div>
+						@endif
+						@if($config->casher['credit'] == 1)
                         <div class="payment_choose">
                             <div class="form-check">
                                 <input class="form-check-input" type="radio" name="type" id="Radio3" value="Credit">
                                 <label class="form-check-label" for="Radio4">信用卡付款<em class="hint">*單次最高贊助金額為 NT$ <span>{{ $config->limit['credit2'] }}</span></em></label>
                             </div>
                         </div>
-    
+						@endif
                     </div>
                 </div>
 
@@ -119,7 +124,7 @@
                     <div class="form-group row ">
                         <label for="password" class="col-sm-2 col-form-label">遊戲密碼</label>
                         <div class="col-sm-9 p-0 flex_center">
-                            <input type="password" class="form-control" id="password">
+                            <input type="password" class="form-control" id="password"name="account" required>
                         </div>
                     </div>
                 </div>
