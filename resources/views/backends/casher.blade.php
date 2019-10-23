@@ -16,11 +16,11 @@
 				<div class="form-group row">
 					<label for="evn_status" class="col-sm-4 col-form-label mr-3 p-1">使用環境狀態</label>
 					<div class="form-check form-check-inline">
-						<input class="form-check-input" type="radio" name="casher[env]" value="production">
+						<input class="form-check-input" type="radio" name="casher[env]" value="production" {{ ($casher['env'] == 'production')? 'checked' : '' }}>
 						<label class="form-check-label" for="inlineRadio1">正式環境</label>
 					</div>
 					<div class="form-check form-check-inline">
-						<input class="form-check-input" type="radio" name="casher[env]" value="test">
+						<input class="form-check-input" type="radio" name="casher[env]" value="test" {{ ($casher['env'] == 'test')? 'checked' : '' }}>
 						<label class="form-check-label" for="inlineRadio2">模擬環境</label>
 					</div>
 				</div>
@@ -70,6 +70,7 @@
 @section('script')
 @parent
 <script>
+
 function clear(){
 	$("#start,#end,#ratio").val('');
 }

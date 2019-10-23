@@ -33,7 +33,10 @@ class FrontendController extends Controller
 		]]);
 		\DB::connection('game')->select('');
 		*/
-		$server = Config::find(1)->server;
+		$config = Config::find(1);
+		$server = $config->server;
+		$casher = $config->casher;
+		
 		config(['database.connections.game' => [
 			'driver' => 'mysql',
 			'host' => $server['ip'],
@@ -65,11 +68,19 @@ class FrontendController extends Controller
 			$obj = new \ECPay_AllInOne();
 	   
 			//服務參數
-			$obj->ServiceURL  = "https://payment-stage.ecpay.com.tw/Cashier/AioCheckOut/V5";  //服務位置
-			$obj->HashKey     = '5294y06JbISpM5x9' ;                                          //測試用Hashkey，請自行帶入ECPay提供的HashKey
-			$obj->HashIV      = 'v77hoKGq4kWxNNIS' ;                                          //測試用HashIV，請自行帶入ECPay提供的HashIV
-			$obj->MerchantID  = '2000132';                                                    //測試用MerchantID，請自行帶入ECPay提供的MerchantID
-			$obj->EncryptType = '1';                                                          //CheckMacValue加密類型，請固定填入1，使用SHA256加密
+			if($casher['env']= 'test'){
+				$obj->ServiceURL  = "https://payment-stage.ecpay.com.tw/Cashier/AioCheckOut/V5";  //服務位置
+				$obj->HashKey     = '5294y06JbISpM5x9' ;                                          //測試用Hashkey，請自行帶入ECPay提供的HashKey
+				$obj->HashIV      = 'v77hoKGq4kWxNNIS' ;                                          //測試用HashIV，請自行帶入ECPay提供的HashIV
+				$obj->MerchantID  = '2000132';                                                    //測試用MerchantID，請自行帶入ECPay提供的MerchantID
+				$obj->EncryptType = '1';                                                          //CheckMacValue加密類型，請固定填入1，使用SHA256加密
+			}elseif($casher['env']= 'production'){
+				$obj->ServiceURL  = "https://payment.ecpay.com.tw/Cashier/AioCheckOut/V5";  //服務位置
+				$obj->HashKey     = $casher['key'];                                          //測試用Hashkey，請自行帶入ECPay提供的HashKey
+				$obj->HashIV      = $casher['iv'];                                         //測試用HashIV，請自行帶入ECPay提供的HashIV
+				$obj->MerchantID  = $casher['shop_no'];                                                    //測試用MerchantID，請自行帶入ECPay提供的MerchantID
+				$obj->EncryptType = '1';                                                          //CheckMacValue加密類型，請固定填入1，使用SHA256加密
+			}
 			//基本參數(請依系統規劃自行調整)
 			//$MerchantTradeNo = "heaven".time() ;
 			$obj->Send['ReturnURL']         = "http://www.ecpay.com.tw/receive.php" ;     //付款完成通知回傳的網址
