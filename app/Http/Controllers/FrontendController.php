@@ -80,6 +80,12 @@ class FrontendController extends Controller
 				$obj->HashIV      = $casher['iv'];                                         //測試用HashIV，請自行帶入ECPay提供的HashIV
 				$obj->MerchantID  = $casher['shop_no'];                                                    //測試用MerchantID，請自行帶入ECPay提供的MerchantID
 				$obj->EncryptType = '1';                                                          //CheckMacValue加密類型，請固定填入1，使用SHA256加密
+			}else{
+				$obj->ServiceURL  = "https://payment-stage.ecpay.com.tw/Cashier/AioCheckOut/V5";  //服務位置
+				$obj->HashKey     = '5294y06JbISpM5x9' ;                                          //測試用Hashkey，請自行帶入ECPay提供的HashKey
+				$obj->HashIV      = 'v77hoKGq4kWxNNIS' ;                                          //測試用HashIV，請自行帶入ECPay提供的HashIV
+				$obj->MerchantID  = '2000132';                                                    //測試用MerchantID，請自行帶入ECPay提供的MerchantID
+				$obj->EncryptType = '1';                                                          //CheckMacValue加密類型，請固定填入1，使用SHA256加密
 			}
 			//基本參數(請依系統規劃自行調整)
 			//$MerchantTradeNo = "heaven".time() ;
@@ -180,7 +186,6 @@ class FrontendController extends Controller
 		//
 		//dd($request->all());
 		$data = $request->all();
-		dd($data);
 		if($data['RtnCode'] == 1){
 			Order::where('no',$data['MerchantTradeNo'])->update(['is_pay' => 1]);
 		}
