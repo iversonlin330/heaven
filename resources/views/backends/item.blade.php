@@ -23,7 +23,7 @@
 							@endforeach
 						</select>
 					</div>
-					<button class="btn btn_blue mr-1" onclick="">選擇資料庫</button>
+					<!--button class="btn btn_blue mr-1" onclick="">選擇資料庫</button-->
 				</div>
 				<div class="form-group row ">
 					<label for="data_port" class="col-sm-3 col-form-label">選擇資料庫表單：</label>
@@ -35,7 +35,7 @@
 						@endforeach
 					</select>
 					</div>
-					<button class="btn btn_blue mr-1" onclick="">選擇資料庫表單</button>
+					<!--button class="btn btn_blue mr-1" onclick="">選擇資料庫表單</button-->
 				</div>
 			</div>
 			</form>

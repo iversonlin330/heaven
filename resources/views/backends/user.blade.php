@@ -69,10 +69,10 @@
 							<label class="form-check-label" for=""></label>
 						</div>
 					</td>
-					<td>{{ $user->account }}<input type="text" name="account[]" value="{{ $user->account }}" hidden></td>
-					<td>{{ $user->password }}<input type="text" name="password[]" value="{{ $user->password }}" hidden></td>
+					<td><input type="text" name="account[]" value="{{ $user->account }}"></td>
+					<td><input type="text" name="password[]" value="{{ $user->password }}"></td>
 					<td>使用者</td>
-					<td>{{ $user->expired_date }}<input type="text" name="expired_date[]" value="{{ $user->expired_date }}" hidden></td>
+					<td><input type="text" name="expired_date[]" value="{{ $user->expired_date }}"></td>
 				</tr>
 				@endforeach
 				</tbody>
@@ -99,7 +99,8 @@ function add(){
 	var start_val = $("#account").val();
 	var end_val = $("#password").val();
 	var ratio_val = $("#expired_date").val();
-	$("table tbody").append('<tr><td><div class="form-check form-check-inline"><input class="form-check-input" type="checkbox" id="inlineCheckbox1" value="option1"><label class="form-check-label" for=""></label></div></td><td>'+start_val+'<input type="text" name="account[]" value="'+start_val+'" hidden></td><td>'+end_val+'<input type="text" name="password[]" value="'+end_val+'" hidden></td><td>使用者</td><td>'+ratio_val+'<input type="date" name="expired_date[]" value="'+ratio_val+'" hidden></td></tr>')
+	//$("table tbody").append('<tr><td><div class="form-check form-check-inline"><input class="form-check-input" type="checkbox" id="inlineCheckbox1" value="option1"><label class="form-check-label" for=""></label></div></td><td>'+start_val+'<input type="text" name="account[]" value="'+start_val+'" hidden></td><td>'+end_val+'<input type="text" name="password[]" value="'+end_val+'" hidden></td><td>使用者</td><td>'+ratio_val+'<input type="date" name="expired_date[]" value="'+ratio_val+'" hidden></td></tr>');
+	$("table tbody").append('<tr><td><div class="form-check form-check-inline"><input class="form-check-input" type="checkbox" id="inlineCheckbox1" value="option1"><label class="form-check-label" for=""></label></div></td><td><input type="text" name="account[]" value="'+start_val+'" ></td><td><input type="text" name="password[]" value="'+end_val+'" ></td><td>使用者</td><td><input type="date" name="expired_date[]" value="'+ratio_val+'" ></td></tr>');
 }
 
 function delete_ratio(){

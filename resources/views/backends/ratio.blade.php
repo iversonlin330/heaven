@@ -89,6 +89,10 @@ function add(){
 	var start_val = $("#start").val();
 	var end_val = $("#end").val();
 	var ratio_val = $("#ratio").val();
+	if(!(ratio_val.includes("1:") && ratio_val.length > 2)){
+		alert('比值格式錯誤，範例1:100');
+		return;
+	}
 	$("table tbody").append('<tr><td><div class="form-check form-check-inline"><input class="form-check-input" type="checkbox" id="inlineCheckbox1" value="option1"><label class="form-check-label" for=""></label></div></td><td>'+start_val+'<input type="text" name="start[]" value="'+start_val+'" hidden></td><td>'+end_val+'<input type="text" name="end[]" value="'+end_val+'" hidden></td><td>'+ratio_val+'<input type="text" name="ratio[]" value="'+ratio_val+'" hidden></td></tr>')
 }
 

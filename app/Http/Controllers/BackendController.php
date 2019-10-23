@@ -59,7 +59,7 @@ class BackendController extends Controller
 			if(!array_key_exists('atm',$data['casher'])){
 				$data['casher']['atm'] = 0;
 			}
-			if(!array_key_exists('cvs',$data['casher'])){
+			if(!array_key_exists('credit',$data['casher'])){
 				$data['casher']['credit'] = 0;
 			}
 		}elseif(array_key_exists('frontend',$data)){

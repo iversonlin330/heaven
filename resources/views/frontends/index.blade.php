@@ -16,10 +16,15 @@
         <div class="container-fluid p-0">
             <div class="col-xs-12">
                 <nav class="navbar navbar-light bg-lihgt">
-                    <div>
-                        <img src="/img/logo.png" alt="">
+                    @if($config->frontend['logo_show'])
+					<div>
+                        <img src="{{ $config->frontend['logo'] }}" alt="" style="width:100%">
                     </div>
-                    <button class="btn_back_homepage" onclick="location.href='{{ url('login') }}'">登入</button>
+					@endif
+					@if($config->frontend['link_show'])
+					<button class="btn_back_homepage" style="margin-left: auto;" onclick="location.href='{{ $config->frontend['link'] }}'">官網</button>
+                    @endif
+					<button class="btn_back_homepage" onclick="location.href='{{ url('login') }}'">登入</button>
                 </nav>
             </div>
         </div>
@@ -68,7 +73,7 @@
                         @if($config->casher['cvs'] == 1)
 						<div class="payment_choose">
                             <div class="form-check">
-                                <input class="form-check-input" type="radio" name="type" id="Radio1" value="CVS">
+                                <input class="form-check-input" type="radio" name="type" id="Radio1" value="CVS" required>
                                 <label class="form-check-label" for="Radio1">超商代碼<em class="hint">*單次最高贊助金額為 NT$ <span>{{ $config->limit['cvs2'] }}</span></em></label>
                             </div>
                         </div>
@@ -76,7 +81,7 @@
 						@if($config->casher['atm'] == 1)
                         <div class="payment_choose">
                             <div class="form-check">
-                                <input class="form-check-input" type="radio" name="type" id="Radio2" value="ATM">
+                                <input class="form-check-input" type="radio" name="type" id="Radio2" value="ATM" required>
                                 <label class="form-check-label" for="Radio3">ATM轉帳<em class="hint">*單次最高贊助金額為 NT$ <span>{{ $config->limit['atm2'] }}</span></em></label>
                             </div>
                         </div>
@@ -84,7 +89,7 @@
 						@if($config->casher['credit'] == 1)
                         <div class="payment_choose">
                             <div class="form-check">
-                                <input class="form-check-input" type="radio" name="type" id="Radio3" value="Credit">
+                                <input class="form-check-input" type="radio" name="type" id="Radio3" value="Credit" required>
                                 <label class="form-check-label" for="Radio4">信用卡付款<em class="hint">*單次最高贊助金額為 NT$ <span>{{ $config->limit['credit2'] }}</span></em></label>
                             </div>
                         </div>
@@ -213,6 +218,13 @@
 <script type="text/javascript" src="/js/bootstrap.js"></script>
 <script type="text/javascript" src="/js/jquery.js"></script>
 <script>
+{{$config->frontend['background']}}
+	@if($config->frontend['background_show'])
+		$("body").css('background-image',"url('{{  $config->frontend['background']  }}')")
+	@endif
+	@if($config->frontend['text_background_show'])
+		$(".box_style_gray").css('background-image',"url('{{ $config->frontend['text_background'] }}')")
+	@endif
 	var ratio = {!! json_encode($ratios->toArray()) !!}
 	$("#sponsorMoney").change(function(){
 		var money = parseInt($(this).val());
