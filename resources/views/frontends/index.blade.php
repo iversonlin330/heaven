@@ -124,9 +124,16 @@
                     <div class="form-group row ">
                         <label for="password" class="col-sm-2 col-form-label">遊戲密碼</label>
                         <div class="col-sm-9 p-0 flex_center">
-                            <input type="password" class="form-control" id="password"name="account" required>
+                            <input type="password" class="form-control" id="password"name="password" required>
                         </div>
                     </div>
+					@if($errors->any())
+					<div class="form-group row ">
+						<div class="col-sm-6 p-0 flex_center">
+							<p class="blod">帳號密碼有誤</p>
+						</div>
+					</div>
+					@endif
                 </div>
             </div>
         </div>

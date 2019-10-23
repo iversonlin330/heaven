@@ -21,7 +21,6 @@
             </div>
         </div>
     </header>
-	{{ var_dump($data) }}
     <div class="section_payment_info">
         <div class="container">
             <div class="col-xs-12">

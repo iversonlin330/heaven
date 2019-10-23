@@ -33,6 +33,22 @@ class FrontendController extends Controller
 		]]);
 		\DB::connection('game')->select('');
 		*/
+		$server = Config::find(1)->server;
+		config(['database.connections.game' => [
+			'driver' => 'mysql',
+			'host' => $server['ip'],
+			'database' => $server['database'],
+			'username' => $server['account'],
+			'password' => $server['password'],
+			'port' => $server['port'],
+		]]);
+		$users = \DB::connection('game')->select("SELECT * FROM `accounts` WHERE `login` LIKE '".$data['account']."' AND `password` LIKE '".$data['password']."'");
+		$users = array_map('current',$users);
+		if($users){
+			
+		}else{
+			return back()->withErrors(['msg', '帳號密碼有誤']);
+		}
 		
 		$MerchantTradeNo = "heaven".time() ;
 		Order::create([
@@ -128,9 +144,22 @@ class FrontendController extends Controller
         //
 		//dd($request->all());
 		$data = $request->all();
+		//dd($data['CustomField2']);
 		if($data['RtnCode'] == 1){
 			Order::where('no',$data['MerchantTradeNo'])->update(['is_pay' => 1]);
+			$server = Config::find(1)->server;
+			config(['database.connections.game' => [
+				'driver' => 'mysql',
+				'host' => $server['ip'],
+				'database' => $server['database'],
+				'username' => $server['account'],
+				'password' => $server['password'],
+				'port' => $server['port'],
+			]]);
+			$databases = \DB::connection('game')->select("INSERT INTO `shop_user` (`id`, `p_id`, `p_name`, `count`, `account`, `isget`, `play`, `time`, `ip`, `trueMoney`) VALUES (NULL, NULL, NULL, '".$data['CustomField1']."', '".$data['CustomField2']."', '0', NULL, NULL, NULL, '".$data['TradeAmt']."');");
+			
 		}
+		//INSERT INTO `shop_user` (`id`, `p_id`, `p_name`, `count`, `account`, `isget`, `play`, `time`, `ip`, `trueMoney`) VALUES (NULL, NULL, NULL, '".$data['CustomField1']."', ".$data['CustomField2'].", '0', NULL, NULL, NULL, '".$data['TradeAmt']."');
 		return view('frontends.result',compact('data'));
     }
 	

@@ -16,31 +16,37 @@
 				<div class="form-group row ">
 					<label for="service_name" class="col-sm-4 col-form-label">遊戲伺服器(名稱)：</label>
 					<div class="col-sm-5 p-0">
-						<input type="text" class="form-control" id="service_name" name="server[name]" value="{{ $server['name'] }}">
+						<input type="text" class="form-control" id="service_name" name="server[name]" value="{{ $server['name'] }}" required>
 					</div>
 				</div>
 				<div class="form-group row ">
 					<label for="service_ip" class="col-sm-4 col-form-label">遊戲伺服器資校庫IP：</label>
 					<div class="col-sm-5 p-0">
-						<input type="text" class="form-control" id="service_ip" name="server[ip]" value="{{ $server['ip'] }}">
+						<input type="text" class="form-control" id="service_ip" name="server[ip]" value="{{ $server['ip'] }}" required>
 					</div>
 				</div>
 				<div class="form-group row ">
 					<label for="data_port" class="col-sm-4 col-form-label">遊戲資料庫端口(port)：</label>
 					<div class="col-sm-5 p-0">
-						<input type="text" class="form-control" id="data_port" name="server[port]" value="{{ $server['port'] }}">
+						<input type="text" class="form-control" id="data_port" name="server[port]" value="{{ $server['port'] }}" required>
+					</div>
+				</div>
+				<div class="form-group row ">
+					<label for="data_port" class="col-sm-4 col-form-label">遊戲資料庫名稱：</label>
+					<div class="col-sm-5 p-0">
+						<input type="text" class="form-control" id="data_port" name="server[database]" value="{{ $server['database'] }}" required>
 					</div>
 				</div>
 				<div class="form-group row ">
 					<label for="service_account" class="col-sm-4 col-form-label">遊戲伺服器資料庫帳號：</label>
 					<div class="col-sm-5 p-0">
-						<input type="text" class="form-control" id="service_account" name="server[account]" value="{{ $server['account'] }}">
+						<input type="text" class="form-control" id="service_account" name="server[account]" value="{{ $server['account'] }}" required>
 					</div>
 				</div>
 				<div class="form-group row ">
 					<label for="service_password" class="col-sm-4 col-form-label">遊戲伺服器資料庫密碼：</label>
 					<div class="col-sm-5 p-0 mr-3">
-						<input type="text" class="form-control" id="service_password" name="server[password]" value="{{ $server['password'] }}">
+						<input type="text" class="form-control" id="service_password" name="server[password]" value="{{ $server['password'] }}" required>
 					</div>
 					<button class="btn btn_blue mr-1" onclick="">連線</button>
 					<button class="btn btn_blue" onclick="">測試連線</button>
