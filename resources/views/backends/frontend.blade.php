@@ -72,21 +72,21 @@
 				<div class="form-group row ">
 					<label for="system_background" class="col-sm-4 col-form-label mr-3 p-1">贊助系統背景</label>
 					<div class="col-sm-5 p-0 mr-1">
-						<input type="file" class="form-control" id="system_background" name="frontend[background]" value="{{ $frontend['background'] }}">
+						<input type="text" class="form-control" id="system_background" name="frontend[background]" value="{{ $frontend['background'] }}">
 					</div>
 					<input type="checkbox" data-toggle="toggle" data-onstyle="info" data-size="sm" data-offstyle="dark" value="1" name="frontend[background_show]" {{ ($frontend['background_show'])? 'checked' : '' }}>
 				</div>
 				<div class="form-group row ">
 					<label for="system_logo" class="col-sm-4 col-form-label mr-3 p-1">贊助系統Logo</label>
 					<div class="col-sm-5 p-0 mr-1">
-						<input type="file" class="form-control" id="system_logo" name="frontend[logo]" value="{{ $frontend['logo'] }}">
+						<input type="text" class="form-control" id="system_logo" name="frontend[logo]" value="{{ $frontend['logo'] }}">
 					</div>
 					<input type="checkbox" data-toggle="toggle" data-onstyle="info" data-size="sm" data-offstyle="dark" value="1" name="frontend[logo_show]" {{ ($frontend['logo_show'])? 'checked' : '' }}>
 				</div>
 				<div class="form-group row ">
 					<label for="text_bg" class="col-sm-4 col-form-label mr-3 p-1">文字框呈現背景</label>
 					<div class="col-sm-5 p-0 mr-1">
-						<input type="file" class="form-control" id="text_bg" name="frontend[text_background]" value="{{ $frontend['text_background'] }}">
+						<input type="text" class="form-control" id="text_bg" name="frontend[text_background]" value="{{ $frontend['text_background'] }}">
 					</div>
 					<input type="checkbox" data-toggle="toggle" data-onstyle="info" data-size="sm" data-offstyle="dark" value="1" name="frontend[text_background_show]" {{ ($frontend['text_background_show'])? 'checked' : '' }}>
 				</div>

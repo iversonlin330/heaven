@@ -77,7 +77,7 @@ class BackendController extends Controller
 					$data['frontend'][$cloumn.'_show'] = 0;
 				}
 			}
-			
+			/*upload file
 			if(array_key_exists('background',$data['frontend'])){
 				$data['frontend']['background'] = $request->file('background')->store('frontend');
 			}else{
@@ -93,6 +93,7 @@ class BackendController extends Controller
 			}else{
 				$data['frontend']['text_background'] = '';
 			}
+			*/
 		}
 		
 		Config::find(1)->update($data);
