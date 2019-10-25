@@ -55,7 +55,13 @@
                     <nav class="navbar navbar-expand-lg navbar-light bg-lihgt back_end_nav ">
                         <ul class="navbar-nav ml-auto">
                             <li class="nav-item">
-                                <p class="nav-link">Admin管理員</p>
+                                <p class="nav-link">
+								@if(Auth::user()->role == 99)
+								Admin管理員
+								@else
+								{{ Auth::user()->account }}
+								@endif
+								</p>
                             </li>
                             <li class="nav-item">
                                 <a class="nav-link" href="{{ url('logout') }}">登出</a>

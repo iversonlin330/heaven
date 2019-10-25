@@ -14,8 +14,8 @@
 			<div class="col-4">
 				<div class="record_box flex_center" style="border-left: 4px solid #59B53A;">
 					<div>
-						<p>今日收入<span style="color:#59B53A; font-size: 20px;"> 183 </span>元</p>
-						<p class="record_box_date">2019-09-22</p>
+						<p>今日收入<span style="color:#59B53A; font-size: 20px;"> {{ $today }} </span>元</p>
+						<p class="record_box_date">{{ date('Y-m-d') }}</p>
 					</div>
 					<i class="fas fa-coins record_box_icon"></i>
 				</div>
@@ -23,8 +23,8 @@
 			<div class="col-4">
 				<div class="record_box flex_center" style="border-left: 4px solid #E58910;">
 					<div>
-						<p>今日收入<span style="color:#E58910; font-size: 20px;"> 2,094 </span>元</p>
-						<p class="record_box_date">2019-09-22</p>
+						<p>今月收入<span style="color:#E58910; font-size: 20px;"> {{ $month }} </span>元</p>
+						<p class="record_box_date">{{ date('Y-m-d') }}</p>
 					</div>
 					<i class="fas fa-coins record_box_icon"></i>
 				</div>
@@ -45,6 +45,7 @@
 <div class="section_deposit_record_table">
 	<div class="container">
 		<div class="col-xs-12">
+		@if(Auth::user()->role == 99)
 			<div class="mb-3">
 				<button class="btn btn_blue d-inline" onclick="">刪除</button>
 				<div class="ml-auto d-inline">
@@ -52,7 +53,7 @@
 						placeholder="搜尋.." style="margin-right: 0;">
 				</div>
 			</div>
-
+		@endif
 			<table class="table table-striped">
 				<thead class="table_head">
 					<tr>

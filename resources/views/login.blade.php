@@ -30,7 +30,7 @@
                     required>
             </div>
 			@if($errors->any())
-			<p>帳號密碼錯誤</p>
+			<p>{{ $errors->first() }}</p>
 			@endif
             <div class="form_field">
                 <input type="submit" value="登入" onclick="javascript:location.href='UC2-PF1_end_index.html'">

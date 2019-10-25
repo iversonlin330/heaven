@@ -47,8 +47,13 @@ class LoginController extends Controller
 			->where('password',$data['password'])
 			->first();
 		if(!$user){
-			return back()->withErrors(['msg', '帳號密碼錯誤']);
+			return back()->withErrors(['msg' => '帳號密碼錯誤']);
 		}else{
+			if($user->role < 99){
+				if($user->expired_date < date('Y-m-d')){
+					return back()->withErrors(['msg' => '合約已到期']);
+				}
+			}
 			Auth::login($user);
 			return redirect('backend/index');
 		}

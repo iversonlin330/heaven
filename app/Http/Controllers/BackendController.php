@@ -7,13 +7,22 @@ use App\Ratio;
 use App\Config;
 use App\User;
 use App\Order;
+use Carbon\Carbon;
 
 class BackendController extends Controller
 {
     //
 	public function index(){
 		$orders = Order::all();
-		return view('backends.index',compact('orders'));
+		$today = 0;
+		$month = 0;
+		foreach($orders->where('created_at','>=',Carbon::today()) as $order){
+			$today = $today + $order->money;
+		}
+		foreach($orders->where('created_at','>=',Carbon::now()->subDays(30)) as $order){
+			$month = $month + $order->money;
+		}
+		return view('backends.index',compact('orders','today','month'));
 	}
 	
 	public function postindex(Request $request){
@@ -67,6 +76,22 @@ class BackendController extends Controller
 				if(!array_key_exists($cloumn.'_show',$data['frontend'])){
 					$data['frontend'][$cloumn.'_show'] = 0;
 				}
+			}
+			
+			if(array_key_exists('background',$data['frontend'])){
+				$data['frontend']['background'] = $request->file('background')->store('frontend');
+			}else{
+				$data['frontend']['background'] = '';
+			}
+			if(array_key_exists('logo',$data['frontend'])){
+				$data['frontend']['logo'] = $data['frontend']['logo']->store('frontend');
+			}else{
+				$data['frontend']['logo'] ='';
+			}
+			if(array_key_exists('text_background',$data['frontend'])){
+				$data['frontend']['text_background'] = $request->file('text_background')->store('frontend');
+			}else{
+				$data['frontend']['text_background'] = '';
 			}
 		}
 		
