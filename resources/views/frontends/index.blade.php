@@ -108,7 +108,7 @@
                     <div class="form-group row ">
                         <label for="sponsorMoney" class="col-sm-2 col-form-label">贊助金額</label>
                         <div class="col-sm-9 p-0 flex_center">
-                            <input type="text" name="value" class="form-control" id="sponsorMoney" placeholder="輸入金額" required>
+                            <input type="number" name="value" class="form-control" id="sponsorMoney" placeholder="輸入金額" required>
                         </div>
                     </div>
                     <div class="form-group row ">
@@ -226,6 +226,21 @@
 		$(".box_style_gray").css('background-image',"url('{{ $config->frontend['text_background'] }}')")
 	@endif
 	var ratio = {!! json_encode($ratios->toArray()) !!}
+	
+	$('[name="type"]').change(function(){
+		var pay_type = $(this).val();
+		if(pay_type == "CVS"){
+			$('[name="value"]').attr('min',{{ $config->limit['cvs1'] }});
+			$('[name="value"]').attr('max',{{ $config->limit['cvs2'] }});
+		}else if(pay_type == "ATM"){
+			$('[name="value"]').attr('min',{{ $config->limit['atm1'] }});
+			$('[name="value"]').attr('max',{{ $config->limit['atm2'] }});
+		}else if(pay_type == "Credit"){
+			$('[name="value"]').attr('min',{{ $config->limit['credit1'] }});
+			$('[name="value"]').attr('max',{{ $config->limit['credit2'] }});
+		}
+	});
+	
 	$("#sponsorMoney").change(function(){
 		var money = parseInt($(this).val());
 		$("#sponsorCurrency").text(money);
@@ -236,7 +251,7 @@
 			var ratio_val = ratio[x]['ratio'].split(":");
 			if(money >= start && money <= end){
 				//console.log(ratio);
-				var result = money*parseFloat(ratio_val[1])/parseFloat(ratio_val[0]);
+				var result = Math.round(money*parseFloat(ratio_val[1])/parseFloat(ratio_val[0]));
 				$("#sponsorCurrency").text(result);
 				$("#Currency").val(result);
 			}
