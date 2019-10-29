@@ -173,7 +173,7 @@ class FrontendController extends Controller
 				'password' => $server['password'],
 				'port' => $server['port'],
 			]]);
-			$databases = \DB::connection('game')->select("INSERT INTO `shop_user` (`id`, `p_id`, `p_name`, `count`, `account`, `isget`, `play`, `time`, `ip`, `trueMoney`) VALUES (NULL, NULL, NULL, '".$data['CustomField1']."', '".$data['CustomField2']."', '0', NULL, NULL, NULL, '".$data['TradeAmt']."');");
+			$databases = \DB::connection('game')->select("INSERT INTO `shop_user` (`p_name`, `count`, `account`, `isget`, `play`, `time`, `ip`, `trueMoney`) VALUES (NULL, '".$data['CustomField1']."', '".$data['CustomField2']."', '0', NULL, NULL, NULL, '".$data['TradeAmt']."');");
 			
 		}
 		//INSERT INTO `shop_user` (`id`, `p_id`, `p_name`, `count`, `account`, `isget`, `play`, `time`, `ip`, `trueMoney`) VALUES (NULL, NULL, NULL, '".$data['CustomField1']."', ".$data['CustomField2'].", '0', NULL, NULL, NULL, '".$data['TradeAmt']."');
