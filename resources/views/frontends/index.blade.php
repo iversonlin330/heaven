@@ -9,6 +9,12 @@
     <link rel="stylesheet" href="/css/bootstrap.css">
     <link rel="stylesheet" href="/fontawesome/css/all.css">
     <title>PF2前台首頁</title>
+	<style type="text/css">
+	body {
+		-moz-user-select : none;
+		-webkit-user-select: none;
+	}
+	</style>
 </head>
 
 <body>
@@ -22,9 +28,10 @@
                     </div>
 					@endif
 					@if($config->frontend['link_show'])
-					<button class="btn_back_homepage" style="margin-left: auto;" onclick="location.href='{{ $config->frontend['link'] }}'">官網</button>
+					<!--button class="btn_back_homepage" style="margin-left: auto;" onclick="location.href='{{ $config->frontend['link'] }}'">官網</button-->
+					<a style="margin-right: auto;" href="{{ $config->frontend['link'] }}">官網</a>
                     @endif
-					<button class="btn_back_homepage" onclick="location.href='{{ url('login') }}'">登入</button>
+					<!--button class="btn_back_homepage" onclick="location.href='{{ url('login') }}'">登入</button-->
                 </nav>
             </div>
         </div>
@@ -214,6 +221,12 @@
             </div>
         </div>
     </div>
+	<div class="container-fluid p-0">
+		<p class="text-center">本系統金流平台<br>
+		Auto Sponsorship System Copyright<br>
+		24H自動贊助系統 版權所有 © by Wynn-Paradise 2019.10<br>
+		</p>
+	</div>
 </body>
 <script type="text/javascript" src="/js/bootstrap.js"></script>
 <script type="text/javascript" src="/js/jquery.js"></script>
@@ -258,5 +271,33 @@
 		}
 		
 	})
+</script>
+<script type="text/javascript">
+function iEsc(){ return false; }
+function iRec(){ return true; }
+function DisableKeys() {
+if(event.ctrlKey || event.shiftKey || event.altKey) {
+window.event.returnValue=false;
+iEsc();}
+}
+document.ondragstart=iEsc;
+document.onkeydown=DisableKeys;
+document.oncontextmenu=iEsc;
+if (typeof document.onselectstart !="undefined")
+document.onselectstart=iEsc;
+else{
+document.onmousedown=iEsc;
+document.onmouseup=iRec;
+}
+function DisableRightClick(qsyzDOTnet){
+if (window.Event){
+if (qsyzDOTnet.which == 2 || qsyzDOTnet.which == 3)
+iEsc();}
+else
+if (event.button == 2 || event.button == 3){
+event.cancelBubble = true
+event.returnValue = false;
+iEsc();}
+}
 </script>
 </html>
