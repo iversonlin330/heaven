@@ -98,13 +98,13 @@ class FrontendController extends Controller
 				//$obj->Send['PaymentInfoURL'] = url('frontend/cvs');
 				//$obj->Send['ClientRedirectURL'] = url('frontend/cvs');
 				//$obj->Send['PaymentInfoURL'] = url('sample2');
-				$obj->SendExtend['ClientRedirectURL'] = url('sample');
+				$obj->SendExtend['ClientRedirectURL'] = url('frontend/cvs');
 			}elseif($data['type'] == 'ATM'){
 				$obj->Send['ChoosePayment']     = \ECPay_PaymentMethod::ATM;
 				//$obj->Send['PaymentInfoURL'] = url('frontend/cvs');
 				//$obj->Send['ClientRedirectURL'] = url('frontend/cvs');
 				//$obj->Send['PaymentInfoURL'] = url('sample2');
-				$obj->SendExtend['ClientRedirectURL'] = url('sample');
+				$obj->SendExtend['ClientRedirectURL'] = url('frontend/cvs');
 			}elseif($data['type'] == 'Credit'){
 				$obj->Send['ChoosePayment']     = \ECPay_PaymentMethod::Credit;
 				$obj->Send['OrderResultURL'] = url('frontend/result');
@@ -185,10 +185,13 @@ class FrontendController extends Controller
 		//
 		//dd($request->all());
 		$data = $request->all();
+		//dd($data);
+		/*
 		if($data['RtnCode'] == 1){
 			Order::where('no',$data['MerchantTradeNo'])->update(['is_pay' => 1]);
 		}
-		return view('frontends.result',compact('data'));
+		*/
+		return view('frontends.cvs',compact('data'));
     }
 	
 	public function getSample(Request $request)
