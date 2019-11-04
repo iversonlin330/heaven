@@ -97,13 +97,13 @@ class FrontendController extends Controller
 				$obj->Send['ChoosePayment']     = \ECPay_PaymentMethod::CVS;
 				//$obj->Send['PaymentInfoURL'] = url('frontend/cvs');
 				//$obj->Send['ClientRedirectURL'] = url('frontend/cvs');
-				$obj->Send['PaymentInfoURL'] = url('sample');
+				//$obj->Send['PaymentInfoURL'] = url('sample');
 				$obj->Send['ClientRedirectURL'] = url('sample');
 			}elseif($data['type'] == 'ATM'){
 				$obj->Send['ChoosePayment']     = \ECPay_PaymentMethod::ATM;
 				//$obj->Send['PaymentInfoURL'] = url('frontend/cvs');
 				//$obj->Send['ClientRedirectURL'] = url('frontend/cvs');
-				$obj->Send['PaymentInfoURL'] = url('sample');
+				//$obj->Send['PaymentInfoURL'] = url('sample');
 				$obj->Send['ClientRedirectURL'] = url('sample');
 			}elseif($data['type'] == 'Credit'){
 				$obj->Send['ChoosePayment']     = \ECPay_PaymentMethod::Credit;
@@ -203,6 +203,7 @@ class FrontendController extends Controller
     {
         //
 		//dd($request->all());
+		echo '1|OK';
 		define( 'ECPay_HashKey', '5294y06JbISpM5x9' );
 		define( 'ECPay_HashIV', 'v77hoKGq4kWxNNIS' );
 		$data = $request->all();
