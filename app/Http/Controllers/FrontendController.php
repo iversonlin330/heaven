@@ -97,14 +97,14 @@ class FrontendController extends Controller
 				$obj->Send['ChoosePayment']     = \ECPay_PaymentMethod::CVS;
 				//$obj->Send['PaymentInfoURL'] = url('frontend/cvs');
 				//$obj->Send['ClientRedirectURL'] = url('frontend/cvs');
-				$obj->Send['PaymentInfoURL'] = url('sample2');
-				$obj->Send['ClientRedirectURL'] = url('sample');
+				//$obj->Send['PaymentInfoURL'] = url('sample2');
+				$obj->SendExtend['ClientRedirectURL'] = url('sample');
 			}elseif($data['type'] == 'ATM'){
 				$obj->Send['ChoosePayment']     = \ECPay_PaymentMethod::ATM;
 				//$obj->Send['PaymentInfoURL'] = url('frontend/cvs');
 				//$obj->Send['ClientRedirectURL'] = url('frontend/cvs');
-				$obj->Send['PaymentInfoURL'] = url('sample2');
-				$obj->Send['ClientRedirectURL'] = url('sample');
+				//$obj->Send['PaymentInfoURL'] = url('sample2');
+				$obj->SendExtend['ClientRedirectURL'] = url('sample');
 			}elseif($data['type'] == 'Credit'){
 				$obj->Send['ChoosePayment']     = \ECPay_PaymentMethod::Credit;
 				$obj->Send['OrderResultURL'] = url('frontend/result');
@@ -202,9 +202,7 @@ class FrontendController extends Controller
 	public function postSample(Request $request)
     {
         //
-		//dd($request->all());
 		return view('frontends.sample');
-		echo '1|OK';
 		define( 'ECPay_HashKey', '5294y06JbISpM5x9' );
 		define( 'ECPay_HashIV', 'v77hoKGq4kWxNNIS' );
 		$data = $request->all();
