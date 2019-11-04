@@ -56,5 +56,6 @@ Route::group(['prefix' => 'frontend'], function () {
 
 Route::get('sample','FrontendController@getSample');
 Route::post('sample','FrontendController@postSample');
+Route::post('sample2','FrontendController@postSample2');
 
 //Route::resource('ratios', 'RatioController');

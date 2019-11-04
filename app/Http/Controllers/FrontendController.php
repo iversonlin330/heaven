@@ -97,13 +97,13 @@ class FrontendController extends Controller
 				$obj->Send['ChoosePayment']     = \ECPay_PaymentMethod::CVS;
 				//$obj->Send['PaymentInfoURL'] = url('frontend/cvs');
 				//$obj->Send['ClientRedirectURL'] = url('frontend/cvs');
-				//$obj->Send['PaymentInfoURL'] = url('sample');
+				$obj->Send['PaymentInfoURL'] = url('sample2');
 				$obj->Send['ClientRedirectURL'] = url('sample');
 			}elseif($data['type'] == 'ATM'){
 				$obj->Send['ChoosePayment']     = \ECPay_PaymentMethod::ATM;
 				//$obj->Send['PaymentInfoURL'] = url('frontend/cvs');
 				//$obj->Send['ClientRedirectURL'] = url('frontend/cvs');
-				//$obj->Send['PaymentInfoURL'] = url('sample');
+				$obj->Send['PaymentInfoURL'] = url('sample2');
 				$obj->Send['ClientRedirectURL'] = url('sample');
 			}elseif($data['type'] == 'Credit'){
 				$obj->Send['ChoosePayment']     = \ECPay_PaymentMethod::Credit;
@@ -203,6 +203,7 @@ class FrontendController extends Controller
     {
         //
 		//dd($request->all());
+		return view('frontends.sample');
 		echo '1|OK';
 		define( 'ECPay_HashKey', '5294y06JbISpM5x9' );
 		define( 'ECPay_HashIV', 'v77hoKGq4kWxNNIS' );
@@ -231,6 +232,11 @@ class FrontendController extends Controller
 		}
 		echo '1|OK';
 		//return view('frontends.result',compact('data'));
+    }
+	
+	public function postSample2(Request $request)
+    {
+		echo '1|OK';
     }
 	
 	public function postRatio(Request $request)
