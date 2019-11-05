@@ -51,6 +51,8 @@ Route::group(['prefix' => 'frontend'], function () {
 	Route::post('index','FrontendController@postindex');
 	Route::post('result','FrontendController@postResult');
 	Route::post('cvs','FrontendController@postCvs');
+	Route::post('atm','FrontendController@postAtm');
+	Route::post('finish','FrontendController@postFinish');
 	//Route::get('result','FrontendController@postResult');
 });
 

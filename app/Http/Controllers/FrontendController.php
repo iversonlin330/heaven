@@ -88,7 +88,8 @@ class FrontendController extends Controller
 			}
 			//基本參數(請依系統規劃自行調整)
 			//$MerchantTradeNo = "heaven".time() ;
-			$obj->Send['ReturnURL']         = "http://www.ecpay.com.tw/receive.php" ;     //付款完成通知回傳的網址
+			//$obj->Send['ReturnURL']         = "http://www.ecpay.com.tw/receive.php" ;     //付款完成通知回傳的網址
+			$obj->Send['ReturnURL']         = url('frontend/finish');     //付款完成通知回傳的網址
 			$obj->Send['MerchantTradeNo']   = $MerchantTradeNo;                           //訂單編號
 			$obj->Send['MerchantTradeDate'] = date('Y/m/d H:i:s');                        //交易時間
 			$obj->Send['TotalAmount']       = $data['value'];                                       //交易金額
@@ -104,7 +105,7 @@ class FrontendController extends Controller
 				//$obj->Send['PaymentInfoURL'] = url('frontend/cvs');
 				//$obj->Send['ClientRedirectURL'] = url('frontend/cvs');
 				//$obj->Send['PaymentInfoURL'] = url('sample2');
-				$obj->SendExtend['ClientRedirectURL'] = url('frontend/cvs');
+				$obj->SendExtend['ClientRedirectURL'] = url('frontend/atm');
 			}elseif($data['type'] == 'Credit'){
 				$obj->Send['ChoosePayment']     = \ECPay_PaymentMethod::Credit;
 				$obj->Send['OrderResultURL'] = url('frontend/result');
@@ -179,6 +180,29 @@ class FrontendController extends Controller
 		return view('frontends.result',compact('data'));
     }
 	
+	public function postFinish(Request $request)
+    {
+        //
+		//dd($request->all());
+		$data = $request->all();
+		//dd($data['CustomField2']);
+		if($data['RtnCode'] == 1){
+			Order::where('no',$data['MerchantTradeNo'])->update(['is_pay' => 1]);
+			$server = Config::find(1)->server;
+			config(['database.connections.game' => [
+				'driver' => 'mysql',
+				'host' => $server['ip'],
+				'database' => $server['database'],
+				'username' => $server['account'],
+				'password' => $server['password'],
+				'port' => $server['port'],
+			]]);
+			$databases = \DB::connection('game')->select("INSERT INTO `shop_user` (`p_name`, `count`, `account`, `isget`, `play`, `time`, `ip`, `trueMoney`) VALUES (NULL, '".$data['CustomField1']."', '".$data['CustomField2']."', '0', NULL, NULL, NULL, '".$data['TradeAmt']."');");
+			
+		}
+		echo '1|OK';
+    }
+	
 	public function postCvs(Request $request)
     {
         //file_put_contents( ‘/tmp/ECPay_’.uniqid(”, true) .’.txt’, print_r( $_POST, true ) );
@@ -192,6 +216,12 @@ class FrontendController extends Controller
 		}
 		*/
 		return view('frontends.cvs',compact('data'));
+    }
+	
+	public function postAtm(Request $request)
+    {
+		$data = $request->all();
+		return view('frontends.atm',compact('data'));
     }
 	
 	public function getSample(Request $request)
