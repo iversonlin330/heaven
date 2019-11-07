@@ -182,7 +182,8 @@ class FrontendController extends Controller
 	
 	public function postFinish(Request $request)
     {
-        //
+        //echo '1|OK';
+		//
 		//dd($request->all());
 		$data = $request->all();
 		//dd($data['CustomField2']);
