@@ -8,7 +8,7 @@
     <link rel="stylesheet" href="/css/style.css">
     <link rel="stylesheet" href="/css/bootstrap.css">
     <link rel="stylesheet" href="/fontawesome/css/all.css">
-    <title>PF5繳費資訊</title>
+    <title>繳費資訊</title>
 </head>
 
 <body>

@@ -8,7 +8,7 @@
     <link rel="stylesheet" href="/css/style.css">
     <link rel="stylesheet" href="/css/bootstrap.css">
     <link rel="stylesheet" href="/fontawesome/css/all.css">
-    <title>PF2前台首頁</title>
+    <title>24小時自動贊助系統</title>
 	<style type="text/css">
 	body {
 		-moz-user-select : none;
@@ -233,7 +233,7 @@
 <script>
 {{$config->frontend['background']}}
 	@if($config->frontend['background_show'])
-		$("body").css('background-image',"url('{{  $config->frontend['background']  }}')")
+		//$("body").css('background-image',"url('{{  $config->frontend['background']  }}')")
 	@endif
 	@if($config->frontend['text_background_show'])
 		$(".box_style_gray").css('background-image',"url('{{ $config->frontend['text_background'] }}')")

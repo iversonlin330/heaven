@@ -8,7 +8,7 @@
     <link rel="stylesheet" href="/css/style.css">
     <link rel="stylesheet" href="/css/bootstrap.css">
     <link rel="stylesheet" href="/fontawesome/css/all.css">
-    <title>PF5繳費成功</title>
+    <title>繳費成功</title>
 </head>
 <body>
     <header class="mb-40">
