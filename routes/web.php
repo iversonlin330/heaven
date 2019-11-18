@@ -11,9 +11,7 @@
 |
 */
 Route::get('/logout', 'Auth\LoginController@getLogout');
-Route::get('/', function () {
-    return view('welcome');
-});
+Route::get('/','FrontendController@index');
 
 Route::get('/login', function () {
 	if(Auth::check()){

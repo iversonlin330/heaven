@@ -52,7 +52,8 @@ label {
 /* 通用 */
 
 .bg-lihgt {
-  background-color: #F7F8FC!important;
+  //background-color: #F7F8FC!important;
+  background-color: black!important;
   padding: 10px 50px!important;
 }
 
