@@ -11,7 +11,7 @@
 	<link href="https://cdn.jsdelivr.net/gh/gitbrent/bootstrap4-toggle@3.5.0/css/bootstrap4-toggle.min.css"
         rel="stylesheet">
 	@show
-    <title>PF1後台首頁</title>
+    <title>24小時自動贊助系統</title>
 </head>
 <body>
     <div class="sidenav">
